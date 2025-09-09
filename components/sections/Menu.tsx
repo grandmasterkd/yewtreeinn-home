@@ -24,11 +24,11 @@ export default function Menu() {
   }, [])
 
   return (
-    <section id="menu" className="py-20 bg-white">
-      <div className="container mx-auto px-4">
+    <section id="menu" className="w-full min-h-screen grid place-items-center">
+      <div className="container mx-auto px-16">
         {/* Header */}
-        <div className={`text-center mb-16 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
-          <h2 className="font-display text-5xl md:text-6xl text-[#0d2e24] mb-4">
+        <div className={`text-start ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+          <h2 className="font-display text-5xl md:text-6xl text-[#0d2e24]">
             CHECK OUT
             <br />
             OUR BEST DISHES
@@ -40,16 +40,16 @@ export default function Menu() {
 
         {/* Featured Dish */}
         <div
-          className={`grid lg:grid-cols-2 gap-12 items-center ${isVisible ? "animate-fade-in-up animate-delay-200" : "opacity-0"}`}
+          className={`grid lg:grid-cols-2 gap-12 items-start ${isVisible ? "animate-fade-in-up animate-delay-200" : "opacity-0"}`}
         >
           {/* Dish Image */}
-          <div className="relative">
+     
             <img
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Yew_Tree_Inn-WH8FVTDEEyr2NlL5bk0sheE4u84yMm.png"
+              src="/menu-dish.jpg"
               alt="Special Lamb Biryani"
-              className="w-full h-96 object-cover rounded-2xl hover-lift"
+             className="w-full h-full object-cover rounded-xl hover-lift"
             />
-          </div>
+   
 
           {/* Dish Details */}
           <div className="space-y-6">
