@@ -8,7 +8,7 @@ import Footer from "@/components/sections/Footer"
 
 export default function Home() {
   return (
-    <main className="">
+    <main className="min-h-screen">
       <Hero />
       <section id="about">
         <About />

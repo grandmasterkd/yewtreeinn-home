@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Star } from "lucide-react"
+import { Leaf } from "lucide-react"
 
 export default function Menu() {
   const [isVisible, setIsVisible] = useState(false)
@@ -23,76 +23,94 @@ export default function Menu() {
     return () => observer.disconnect()
   }, [])
 
+  const handleViewFullMenu = () => {
+    window.open("/menu.pdf", "_blank")
+  }
+
   return (
-    <section id="menu" className="w-full min-h-screen grid place-items-center">
-      <div className="container mx-auto px-16">
+    <main id="menu" className="w-full min-h-screen grid place-items-center">
+      <section className="container mx-auto">
         {/* Header */}
-        <div className={`text-start ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
-          <h2 className="font-display text-5xl md:text-6xl text-[#0d2e24]">
+        <div className={`pl-4 sm:pl-8 pb-4 md:pb-6 text-start ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl">
             CHECK OUT
             <br />
             OUR BEST DISHES
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="max-w-xl text-sm sm:text-base">
             Discover our signature creations, crafted with passion and the finest ingredients
           </p>
         </div>
 
         {/* Featured Dish */}
         <div
-          className={`grid lg:grid-cols-2 gap-12 items-start ${isVisible ? "animate-fade-in-up animate-delay-200" : "opacity-0"}`}
+          className={`grid grid-cols-1 lg:grid-cols-8 gap-6 lg:gap-x-16 gap-y-3 items-start ${isVisible ? "animate-fade-in-up animate-delay-200" : "opacity-0"}`}
         >
           {/* Dish Image */}
-     
+          <div className="lg:col-span-3">
             <img
               src="/menu-dish.jpg"
               alt="Special Lamb Biryani"
-             className="w-full h-full object-cover rounded-xl hover-lift"
+              className="w-full h-[300px] sm:h-[400px] lg:h-[550px] object-cover rounded-3xl hover-lift"
             />
-   
+          </div>
 
           {/* Dish Details */}
-          <div className="space-y-6">
-            <div>
-              <h3 className="font-display text-4xl text-[#0d2e24] mb-4">SPECIAL LAMB BIRYANI</h3>
-              <p className="text-lg text-gray-700 leading-relaxed mb-6">
+          <div className="h-full lg:col-span-5 flex flex-col justify-center gap-y-4 md:gap-y-24">
+            <div className=" space-y-1">
+              <div className="flex flex-row items-center justify-between gap-3">
+                <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl text-[#E8D3A5]">SPECIAL LAMB BIRYANI</h3>
+                <span className="mr-0 lg:mr-20 text-2xl sm:text-3xl lg:text-4xl text-[#0d2e24] font-display">£11.50</span>
+              </div>
+
+              <p className="w-full text-sm md:text-base ">
                 Marinated lamb cooked slowly in basmati rice, flavoured with mint & rose water, served with mixed
                 vegetables & raita
               </p>
 
               {/* Rating */}
-              <div className="flex items-center gap-2 mb-6">
+              <div className="pt-4 flex items-center gap-2">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-[#e8d3a5] text-[#e8d3a5]" />
+                  <Leaf key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-[#FFC757] text-[#FFC757]" />
                 ))}
               </div>
             </div>
 
-            {/* Price and Actions */}
-            <div className="flex items-center justify-between">
-              <span className="font-display text-4xl text-[#0d2e24]">£11.50</span>
-              <div className="flex gap-4">
-                <Button className="bg-[#0d2e24] text-white hover:bg-[#134435] px-8 hover-lift">See Full Menu</Button>
-                <Button size="icon" className="bg-[#0d2e24] text-white hover:bg-[#134435] rounded-full hover-lift">
-                  →
-                </Button>
+            {/* Additional Info with vertical line */}
+            <div className="relative space-y-5 pt-0">
+              {/* Vertical line */}
+              <div className="absolute left-1.5 top-6 bottom-0 w-px bg-gray-200"></div>
+
+              <div className="flex items-start gap-3 relative">
+                <div className="w-3 h-3 bg-[#0d2e24] rounded-full mt-1.5 relative z-10" />
+                <p className="text-gray-700 text-sm sm:text-base">
+                  Served with traditional accompaniments and fresh naan bread
+                </p>
+              </div>
+              <div className="flex items-start gap-3 relative">
+                <div className="w-3 h-3 bg-gray-400 rounded-full mt-1.5 relative z-10" />
+                <p className="text-gray-500 text-sm sm:text-base">Available for both dine-in and takeaway orders</p>
               </div>
             </div>
 
-            {/* Additional Info */}
-            <div className="space-y-4 pt-6 border-t border-gray-200">
-              <div className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-[#0d2e24] rounded-full mt-2" />
-                <p className="text-gray-700">Served with traditional accompaniments and fresh naan bread</p>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-gray-400 rounded-full mt-2" />
-                <p className="text-gray-500">Available for both dine-in and takeaway orders</p>
-              </div>
+            <div className="flex flex-row items-center gap-1">
+              <Button
+                onClick={handleViewFullMenu}
+                className="bg-[#0d2e24] text-[#E8D3A5] hover:bg-[#134435] px-6 h-14 rounded-full text-sm sm:text-base w-auto sm:w-auto"
+              >
+                See Full Menu
+              </Button>
+              <Button
+                size="icon"
+                onClick={handleViewFullMenu}
+                className="bg-[#0d2e24] text-lg font-medium text-[#E8D3A5] h-14 w-14 flex items-center justify-center rounded-full"
+              >
+                →
+              </Button>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
   )
 }

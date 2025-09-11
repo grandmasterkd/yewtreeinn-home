@@ -44,11 +44,11 @@ export default function Reviews() {
   ]
 
   return (
-    <section id="reviews" className="py-20 bg-white">
-      <div className="container mx-auto px-4">
+    <section id="reviews" className="py-20">
+      <div className="container mx-auto">
         {/* Header */}
-        <div className={`text-center mb-16 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
-          <h2 className="font-display text-5xl md:text-6xl text-[#0d2e24] mb-4">
+        <div className={`pl-8 text-left mb-0 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+          <h2 className="font-display text-5xl text-[#0d2e24] mb-4">
             AND SEE WHAT
             <br />
             PEOPLE SAY ABOUT US
@@ -60,7 +60,7 @@ export default function Reviews() {
           className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 ${isVisible ? "animate-fade-in-up animate-delay-200" : "opacity-0"}`}
         >
           {reviews.map((review, index) => (
-            <div key={index} className={`bg-[#ececec] rounded-2xl p-8 hover-lift animate-delay-${(index + 1) * 100}`}>
+            <div key={index} className={`bg-[#ececec] rounded-2xl p-8 animate-delay-${(index + 1) * 100}`}>
               {/* Reviewer Info */}
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-12 bg-gray-400 rounded-full" />

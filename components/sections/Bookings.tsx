@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { ChevronDown } from "lucide-react"
+import { ChevronDown, ChevronRight } from "lucide-react"
 
 export default function Bookings() {
   const [isVisible, setIsVisible] = useState(false)
@@ -10,6 +10,8 @@ export default function Bookings() {
   const [selectedPeople, setSelectedPeople] = useState(2)
   const [selectedDate, setSelectedDate] = useState("")
   const [selectedTime, setSelectedTime] = useState("")
+  const [selectedMonth, setSelectedMonth] = useState(8) // September (0-indexed)
+  const [selectedYear] = useState(2025)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -36,12 +38,50 @@ export default function Bookings() {
     "21:00 - 22:00",
   ]
 
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ]
+
+  const getDaysInMonth = (month: number, year: number) => {
+    return new Date(year, month + 1, 0).getDate()
+  }
+
   const generateCalendarDays = () => {
+    const daysInMonth = getDaysInMonth(selectedMonth, selectedYear)
     const days = []
-    for (let i = 1; i <= 30; i++) {
+    for (let i = 1; i <= daysInMonth; i++) {
       days.push(i.toString().padStart(2, "0"))
     }
     return days
+  }
+
+  const stepDescriptions = {
+    1: {
+      title: "People",
+      description:
+        "Select the number of guests for your reservation. We can accommodate parties of up to 8 people through our online booking system.",
+    },
+    2: {
+      title: "Date",
+      description:
+        "Choose your preferred dining date from our available calendar. We're open throughout the week with varying availability.",
+    },
+    3: {
+      title: "Time",
+      description:
+        "Pick from our available time slots. We offer both lunch and dinner services with carefully curated time windows for the best experience.",
+    },
   }
 
   const handleBooking = () => {
@@ -58,144 +98,188 @@ export default function Bookings() {
   }
 
   return (
-    <section id="bookings" className="py-20 bg-[#ececec]">
-      <div className="container mx-auto px-4">
-        {/* Header */}
-        <div className={`mb-16 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
-          <h2 className="font-display text-5xl md:text-6xl text-[#0d2e24] mb-8">
-            GET BOOKED AT
-            <br />
-            YEW TREE INN, TODAY
-          </h2>
+    <section id="bookings" className="py-20">
+      <div className="container mx-auto ">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          {/* Left Column */}
+          <div className={`pl-8 space-y-3 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+            <h2 className="font-display text-5xl text-[#0d2e24]">
+              GET BOOKED AT
+              <br />
+              YEW TREE INN, TODAY
+            </h2>
 
-          {/* Booking Steps */}
-          <div className="flex items-center justify-center mb-8">
-            <div className="flex items-center gap-4">
-              {/* Step indicators */}
-              <div
-                className={`px-6 py-3 rounded-full ${currentStep === 1 ? "bg-[#e8d3a5] text-[#0d2e24]" : "bg-[#0d2e24] text-white"}`}
-              >
-                People
-              </div>
-              <div
-                className={`px-6 py-3 rounded-full ${currentStep === 2 ? "bg-[#e8d3a5] text-[#0d2e24]" : "bg-[#0d2e24] text-white"}`}
-              >
-                Date
-              </div>
-              <div
-                className={`px-6 py-3 rounded-full ${currentStep === 3 ? "bg-[#e8d3a5] text-[#0d2e24]" : "bg-[#0d2e24] text-white"}`}
-              >
-                Time
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Booking Interface */}
-        <div className={`max-w-4xl mx-auto ${isVisible ? "animate-fade-in-up animate-delay-200" : "opacity-0"}`}>
-          {/* Step 1: People Selection */}
-          {currentStep === 1 && (
-            <div className="bg-white rounded-2xl p-8 text-center">
-              <h3 className="font-display text-3xl text-[#0d2e24] mb-8">Select Number of People</h3>
-              <div className="grid grid-cols-4 gap-4 max-w-md mx-auto mb-8">
-                {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
-                  <button
-                    key={num}
-                    onClick={() => setSelectedPeople(num)}
-                    className={`w-16 h-16 rounded-lg font-bold text-xl transition-all hover-lift ${
-                      selectedPeople === num
-                        ? "bg-[#e8d3a5] text-[#0d2e24]"
-                        : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                    }`}
-                  >
-                    {num}
-                  </button>
-                ))}
-              </div>
-              <p className="text-gray-600 mb-8">Contact +47 000 000 0000 to book more people</p>
-              <Button
-                onClick={() => setCurrentStep(2)}
-                className="bg-[#0d2e24] text-white hover:bg-[#134435] px-8 hover-lift"
-              >
-                Next
-              </Button>
-            </div>
-          )}
-
-          {/* Step 2: Date Selection */}
-          {currentStep === 2 && (
-            <div className="bg-white rounded-2xl p-8">
-              <div className="flex items-center justify-between mb-8">
-                <h3 className="font-display text-3xl text-[#0d2e24]">Select Date</h3>
-                <div className="flex items-center gap-2">
-                  <span className="text-lg">September</span>
-                  <ChevronDown className="w-5 h-5" />
+            <div className="flex items-center gap-4 mb-0">
+              <div className="flex -space-x-5">
+                <div className="w-12 h-12 rounded-full bg-gray-300 border-2 border-white">
+                  <img src="/booking-headshot-3.jpg" alt="Booking Headshot" className="w-full h-full rounded-full  object-cover" />
+                </div>
+                <div className="w-12 h-12 rounded-full bg-gray-400 border-2 border-white">
+                    <img src="/booking-headshot-2.jpg" alt="Booking Headshot" className="w-full h-full rounded-full  object-cover" />
+                </div>
+                <div className="w-12 h-12 rounded-full bg-gray-500 border-2 border-white">
+                    <img src="/booking-headshot-1.jpg" alt="Booking Headshot" className="w-full h-full rounded-full  object-cover" />
                 </div>
               </div>
+              <button className="flex items-center gap-2 text-[#0d2e24] hover:text-[#134435] hover:underline transition-colors">
+                <span className="text-base">See booking policies here</span>
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
 
-              <div className="grid grid-cols-7 gap-2 mb-8">
-                {generateCalendarDays().map((day) => (
-                  <button
-                    key={day}
-                    onClick={() => setSelectedDate(day)}
-                    className={`w-12 h-12 rounded-lg font-semibold transition-all hover-lift ${
-                      selectedDate === day
-                        ? "bg-[#e8d3a5] text-[#0d2e24]"
-                        : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                    }`}
-                  >
-                    {day}
-                  </button>
-                ))}
-              </div>
+            <div className="pt-6">
+              <h3 className="font-medium text-2xl text-[#0d2e24]">
+                {stepDescriptions[currentStep as keyof typeof stepDescriptions].title}
+              </h3>
+              <p className="w-full lg:max-w-[70%]">
+                {stepDescriptions[currentStep as keyof typeof stepDescriptions].description}
+              </p>
+            </div>
+          </div>
 
-              <div className="flex justify-center">
-                <Button
+          {/* Right Column - Booking Interface */}
+          <div className={`${isVisible ? "animate-fade-in-up animate-delay-200" : "opacity-0"}`}>
+            <div className="flex items-center justify-center mb-8">
+              <div className="bg-[#0d2e24] rounded-full flex items-center p-1">
+                <button
+                  onClick={() => setCurrentStep(1)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                    currentStep === 1 ? "bg-[#e8d3a5] text-[#0d2e24]" : "text-white hover:bg-[#134435]"
+                  }`}
+                >
+                  People
+                </button>
+                <button
+                  onClick={() => setCurrentStep(2)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                    currentStep === 2 ? "bg-[#e8d3a5] text-[#0d2e24]" : "text-white hover:bg-[#134435]"
+                  }`}
+                >
+                  Date
+                </button>
+                <button
                   onClick={() => setCurrentStep(3)}
-                  disabled={!selectedDate}
-                  className="bg-[#0d2e24] text-white hover:bg-[#134435] px-8 hover-lift disabled:opacity-50"
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                    currentStep === 3 ? "bg-[#e8d3a5] text-[#0d2e24]" : "text-white hover:bg-[#134435]"
+                  }`}
+                >
+                  Time
+                </button>
+              </div>
+            </div>
+
+            {/* Step 1: People Selection */}
+            {currentStep === 1 && (
+              <div className="bg-gray-100 rounded-2xl p-8 text-center">
+                <div className="grid grid-cols-4 gap-4 max-w-md mx-auto mb-8">
+                  {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
+                    <button
+                      key={num}
+                      onClick={() => setSelectedPeople(num)}
+                      className={`w-16 h-16 rounded-lg font-display text-xl transition-all hover-lift ${
+                        selectedPeople === num
+                          ? "bg-[#e8d3a5] text-[#0d2e24]"
+                          : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                      }`}
+                    >
+                      {num}
+                    </button>
+                  ))}
+                </div>
+                <p className="text-gray-600 mb-8 text-sm">Contact +47 000 000 0000 to book more people</p>
+                <Button
+                  onClick={() => setCurrentStep(2)}
+                  className="bg-[#0d2e24] text-white hover:bg-[#134435] px-8 hover-lift"
                 >
                   Next
                 </Button>
               </div>
-            </div>
-          )}
+            )}
 
-          {/* Step 3: Time Selection */}
-          {currentStep === 3 && (
-            <div className="bg-white rounded-2xl p-8">
-              <h3 className="font-display text-3xl text-[#0d2e24] mb-4">Select a time from an available slot</h3>
-              <p className="text-gray-600 mb-8">
-                {selectedPeople} People, Tuesday, September {selectedDate} 2025
-              </p>
-
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
-                {timeSlots.map((time) => (
-                  <button
-                    key={time}
-                    onClick={() => setSelectedTime(time)}
-                    className={`p-4 rounded-lg font-semibold transition-all hover-lift ${
-                      selectedTime === time
-                        ? "bg-[#e8d3a5] text-[#0d2e24]"
-                        : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                    }`}
+            {/* Step 2: Date Selection */}
+            {currentStep === 2 && (
+              <div className="bg-gray-100 rounded-2xl p-8">
+                <div className="flex items-center justify-between mb-6">
+                  <select
+                    value={selectedMonth}
+                    onChange={(e) => setSelectedMonth(Number.parseInt(e.target.value))}
+                    className="text-lg font-medium bg-transparent border-none outline-none cursor-pointer"
                   >
-                    {time}
-                  </button>
-                ))}
-              </div>
+                    {months.map((month, index) => (
+                      <option key={index} value={index}>
+                        {month}
+                      </option>
+                    ))}
+                  </select>
+                  <ChevronDown className="w-5 h-5 text-gray-600" />
+                </div>
 
-              <div className="flex justify-center">
-                <Button
-                  onClick={handleBooking}
-                  disabled={!selectedTime}
-                  className="bg-[#0d2e24] text-white hover:bg-[#134435] px-8 hover-lift disabled:opacity-50"
-                >
-                  Complete Booking
-                </Button>
+                <div className="grid grid-cols-7 gap-2 mb-8">
+                  {generateCalendarDays().map((day) => (
+                    <button
+                      key={day}
+                      onClick={() => setSelectedDate(day)}
+                      className={`w-12 h-12 rounded-lg font-display font-semibold transition-all hover-lift ${
+                        selectedDate === day
+                          ? "bg-[#e8d3a5] text-[#0d2e24]"
+                          : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                      }`}
+                    >
+                      {day}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="flex justify-center">
+                  <Button
+                    onClick={() => setCurrentStep(3)}
+                    disabled={!selectedDate}
+                    className="bg-[#0d2e24] text-white hover:bg-[#134435] px-8 hover-lift disabled:opacity-50"
+                  >
+                    Next
+                  </Button>
+                </div>
               </div>
-            </div>
-          )}
+            )}
+
+            {/* Step 3: Time Selection */}
+            {currentStep === 3 && (
+              <div className="bg-gray-100 rounded-2xl p-8">
+                <h3 className="text-lg font-medium text-[#0d2e24] mb-4">Select a time from an available slot</h3>
+
+                <div className="grid grid-cols-2 gap-3 mb-8">
+                  {timeSlots.map((time) => (
+                    <button
+                      key={time}
+                      onClick={() => setSelectedTime(time)}
+                      className={`p-3 rounded-lg font-display font-semibold transition-all hover-lift ${
+                        selectedTime === time
+                          ? "bg-[#e8d3a5] text-[#0d2e24]"
+                          : "bg-white text-gray-600 hover:bg-gray-200"
+                      }`}
+                    >
+                      {time}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="flex justify-between items-center">
+                  <p className="text-gray-600 text-sm">
+                    {selectedPeople} People
+                    <br />
+                    {months[selectedMonth]} {selectedDate}, {selectedYear}
+                  </p>
+                  <Button
+                    onClick={handleBooking}
+                    disabled={!selectedTime}
+                    className="bg-[#0d2e24] text-white hover:bg-[#134435] px-8 hover-lift disabled:opacity-50"
+                  >
+                    Done
+                  </Button>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </section>

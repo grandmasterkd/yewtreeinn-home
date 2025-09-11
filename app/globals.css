@@ -64,6 +64,14 @@ body {
   letter-spacing: -0.05em;
 }
 
+h2 {
+  color: #0D2E24
+}
+
+p {
+  color: gray
+}
+
 .font-display {
   font-family: var(--font-display);
   letter-spacing: 0.02em;

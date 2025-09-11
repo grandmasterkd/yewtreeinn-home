@@ -20,6 +20,9 @@ export const metadata: Metadata = {
   title: "Yew Tree Inn - Premium Restaurant in Glasgow",
   description:
     "Experience exceptional dining at Yew Tree Inn, Glasgow's premier restaurant offering modern twists on classic dishes in a beautiful setting.",
+  icons: {
+    icon: "/favicon.svg",
+  },
 }
 
 export default function RootLayout({
