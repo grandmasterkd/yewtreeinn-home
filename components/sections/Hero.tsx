@@ -20,17 +20,17 @@ export default function Hero() {
 
   return (
     <section
-      className="relative min-h-screen bg-cover bg-center bg-no-repeat"
+      className="relative min-h-screen bg-cover bg-center bg-no-repeat mx-auto w-screen"
       style={{
         backgroundImage: "url('/yewtreeinn-herobg.jpg')",
       }}
     >
       <nav
-        className={`absolute top-12 inset-x-36 transform transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}`}
+        className={`absolute top-12 inset-x-8 lg:inset-x-36 transform transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}`}
       >
-        <div className="bg-white/10 backdrop-blur-sm rounded-full h-16 flex items-center justify-between border border-white/10">
+        <div className="bg-white/10 backdrop-blur-sm rounded-full h-16 px-2 flex items-center justify-between border border-white/10">
           <div className="flex items-center">
-            <img src="/yewtreeinn-logo.png" alt="Yew Tree Inn Logo" className="h-8 md:h-10" />
+            <img  src="/yewtreeinn_logowhitebg.svg" alt="Yew Tree Inn Logo" className="-pl-2 size-24" />
           </div>
 
           <div className="hidden text-sm lg:flex items-center gap-x-6">
@@ -104,7 +104,7 @@ export default function Hero() {
         </div>
       </nav>
 
-      <div className="absolute bottom-8 md:bottom-12 inset-x-36">
+      <div className="absolute bottom-8 md:bottom-12 inset-x-8 lg:inset-x-36 ">
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end max-w-7xl mx-auto lg:gap-0">
           <div
             className={`transition-all duration-1000 ${isLoaded ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}`}
@@ -120,10 +120,10 @@ export default function Hero() {
             className={`max-w-md lg:max-w-sm xl:max-w-md transition-all duration-1000 ${isLoaded ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"}`}
             style={{ transitionDelay: "1000ms" }}
           >
-            <span className="text-white font-medium font-inter text-sm md:text-base ">
+            <div className="mb-4 text-white font-medium font-inter text-sm md:text-base ">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
               dolore magna aliqua.
-            </span>
+            </div>
           </div>
         </div>
       </div>

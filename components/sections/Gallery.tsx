@@ -23,29 +23,29 @@ export default function Gallery() {
 
   const galleryImages = [
     {
-      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Yew_Tree_Inn.png-MTk1Hy8NK90TT2TU1oi2Sw6A8Q1w2i.jpeg",
+      src: "/gallery/muhammad-umair-Vp2SJ9_kwKY-unsplash.jpg",
       alt: "Restaurant interior",
     },
     {
-      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Yew_Tree_Inn.png-MTk1Hy8NK90TT2TU1oi2Sw6A8Q1w2i.jpeg",
+      src: "/gallery/anna-blake-5z8dV82_MyA-unsplash.jpg",
       alt: "Outdoor seating",
     },
     {
-      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Yew_Tree_Inn.png-MTk1Hy8NK90TT2TU1oi2Sw6A8Q1w2i.jpeg",
+      src: "/gallery/josh-berendes-z35IfrueG9s-unsplash.jpg",
       alt: "Private dining",
     },
     {
-      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Yew_Tree_Inn.png-MTk1Hy8NK90TT2TU1oi2Sw6A8Q1w2i.jpeg",
+      src: "/gallery/michael-lock-uu2f5z9c4N4-unsplash.jpg",
       alt: "Bar area",
     },
   ]
 
   return (
-    <section id="gallery" className="py-20 bg-black text-white">
-      <div className="container mx-auto px-4">
+    <section id="gallery" className="py-20">
+      <div className="container mx-auto">
         {/* Header */}
-        <div className={`text-center mb-16 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
-          <h2 className="font-display text-5xl md:text-6xl text-[#134435] mb-4">
+        <div className={`pl-8 text-left ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+          <h2 className="font-display text-5xl text-[#134435] mb-4">
             TAKE A LOOK AROUND
             <br />
             YEW TREE INN RESTAURANT
@@ -54,19 +54,17 @@ export default function Gallery() {
 
         {/* Gallery Grid */}
         <div
-          className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 ${isVisible ? "animate-fade-in-up animate-delay-200" : "opacity-0"}`}
+          className={`grid grid-cols-1 lg:grid-cols-4 gap-x-4 gap-y-3 ${isVisible ? "animate-fade-in-up animate-delay-200" : "opacity-0"}`}
         >
           {galleryImages.map((image, index) => (
             <div
               key={index}
-              className={`relative overflow-hidden rounded-2xl hover-lift ${
-                index === 0 ? "md:col-span-2 md:row-span-2" : ""
-              }`}
+              className={`relative overflow-hidden rounded-2xl hover-lift`}
             >
               <img
                 src={image.src || "/placeholder.svg"}
                 alt={image.alt}
-                className="w-full h-64 md:h-80 object-cover transition-transform duration-500 hover:scale-110"
+                className="w-full h-[550px] object-cover transition-transform duration-500 hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
             </div>
