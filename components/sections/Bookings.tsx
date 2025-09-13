@@ -139,11 +139,11 @@ export default function Bookings() {
 
           {/* Right Column - Booking Interface */}
           <div className={`${isVisible ? "animate-fade-in-up animate-delay-200" : "opacity-0"}`}>
-            <div className="flex items-center justify-center mb-8">
-              <div className="bg-[#0d2e24] rounded-full flex items-center p-1">
+            <div className="w-fit flex items-center justify-center mb-1">
+              <div className="w-full bg-[#0d2e24] rounded-full flex justify-between items-center h-14 px-1">
                 <button
                   onClick={() => setCurrentStep(1)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                  className={`px-24 h-12 rounded-full text-sm font-medium transition-all ${
                     currentStep === 1 ? "bg-[#e8d3a5] text-[#0d2e24]" : "text-white hover:bg-[#134435]"
                   }`}
                 >
@@ -151,7 +151,7 @@ export default function Bookings() {
                 </button>
                 <button
                   onClick={() => setCurrentStep(2)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                  className={`px-24 h-12 rounded-full text-sm font-medium transition-all ${
                     currentStep === 2 ? "bg-[#e8d3a5] text-[#0d2e24]" : "text-white hover:bg-[#134435]"
                   }`}
                 >
@@ -159,7 +159,7 @@ export default function Bookings() {
                 </button>
                 <button
                   onClick={() => setCurrentStep(3)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                  className={`px-24 h-12 rounded-full text-sm font-medium transition-all ${
                     currentStep === 3 ? "bg-[#e8d3a5] text-[#0d2e24]" : "text-white hover:bg-[#134435]"
                   }`}
                 >
@@ -170,7 +170,7 @@ export default function Bookings() {
 
             {/* Step 1: People Selection */}
             {currentStep === 1 && (
-              <div className="bg-gray-100 rounded-2xl p-8 text-center">
+              <div className="w-full bg-gray-100 rounded-2xl p-8 text-center">
                 <div className="grid grid-cols-4 gap-4 max-w-md mx-auto mb-8">
                   {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
                     <button
