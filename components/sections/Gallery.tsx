@@ -41,11 +41,11 @@ export default function Gallery() {
   ]
 
   return (
-    <section id="gallery" className="py-20">
-      <div className="container mx-auto">
+    <section id="gallery" className="py-8 md:py-16 lg:py-20 bg-white">
+      <div className="container mx-auto px-6 lg:px-8">
         {/* Header */}
-        <div className={`pl-8 text-left ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
-          <h2 className="font-display text-5xl text-[#134435] mb-4">
+        <div className={`pl-0 md:pl-8 text-left mb-8 md:mb-12 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-[#134435] mb-4">
             TAKE A LOOK AROUND
             <br />
             YEW TREE INN RESTAURANT
@@ -54,17 +54,14 @@ export default function Gallery() {
 
         {/* Gallery Grid */}
         <div
-          className={`grid grid-cols-1 lg:grid-cols-4 gap-x-4 gap-y-3 ${isVisible ? "animate-fade-in-up animate-delay-200" : "opacity-0"}`}
+          className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-x-4 gap-y-3 ${isVisible ? "animate-fade-in-up animate-delay-200" : "opacity-0"}`}
         >
           {galleryImages.map((image, index) => (
-            <div
-              key={index}
-              className={`relative overflow-hidden rounded-2xl hover-lift`}
-            >
+            <div key={index} className={`relative overflow-hidden rounded-2xl hover-lift`}>
               <img
                 src={image.src || "/placeholder.svg"}
                 alt={image.alt}
-                className="w-full h-[550px] object-cover transition-transform duration-500 hover:scale-110"
+                className="w-full h-[300px] md:h-[400px] lg:h-[550px] object-cover transition-transform duration-500 hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
             </div>

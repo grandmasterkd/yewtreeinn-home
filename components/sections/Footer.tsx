@@ -19,123 +19,120 @@ export default function Footer() {
     message: string
   }>({ type: null, message: "" })
 
-// Update your handleContactSubmit function in /app/components/sections/footer.tsx
-async function handleContactSubmit(event: React.FormEvent<HTMLFormElement>) {
-  event.preventDefault()
-  setIsSubmitting(true)
-  setFormStatus({ type: null, message: "" })
+  async function handleContactSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    setIsSubmitting(true)
+    setFormStatus({ type: null, message: "" })
 
-  // Store the form element reference before async operations
-  const form = event.currentTarget
-  const formData = new FormData(form)
-  const data = {
-    name: formData.get("name"),
-    email: formData.get("email"),
-    phone: formData.get("phone"),
-    message: formData.get("message"),
-  }
-
-  console.log("[v0] Submitting contact form data:", data)
-
-  try {
-    const response = await fetch("/api/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-
-    // Check if response is JSON
-    const contentType = response.headers.get("content-type")
-    if (!contentType || !contentType.includes("application/json")) {
-      throw new Error("Server returned non-JSON response")
+    // Store the form element reference before async operations
+    const form = event.currentTarget
+    const formData = new FormData(form)
+    const data = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      phone: formData.get("phone"),
+      message: formData.get("message"),
     }
 
-    const result = await response.json()
-    console.log("[v0] Contact form response:", result)
+    console.log("[v0] Submitting contact form data:", data)
 
-    if (result.success) {
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+
+      // Check if response is JSON
+      const contentType = response.headers.get("content-type")
+      if (!contentType || !contentType.includes("application/json")) {
+        throw new Error("Server returned non-JSON response")
+      }
+
+      const result = await response.json()
+      console.log("[v0] Contact form response:", result)
+
+      if (result.success) {
+        setFormStatus({
+          type: "success",
+          message: "Message sent successfully! We will get back to you soon.",
+        })
+        // Use the stored form reference instead of event.currentTarget
+        form.reset()
+      } else {
+        throw new Error(result.error || "Failed to send message")
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error)
       setFormStatus({
-        type: "success",
-        message: "Message sent successfully! We will get back to you soon.",
+        type: "error",
+        message: "Failed to send message. Please try again.",
       })
-      // Use the stored form reference instead of event.currentTarget
-      form.reset()
-    } else {
-      throw new Error(result.error || "Failed to send message")
+    } finally {
+      setIsSubmitting(false)
     }
-  } catch (error) {
-    console.error("Error submitting form:", error)
-    setFormStatus({
-      type: "error",
-      message: "Failed to send message. Please try again.",
-    })
-  } finally {
-    setIsSubmitting(false)
-  }
-}
-
-  // Update your handleReviewSubmit function as well
-// In your footer.tsx - update the handleReviewSubmit function
-async function handleReviewSubmit(event: React.FormEvent<HTMLFormElement>) {
-  event.preventDefault()
-  setIsReviewSubmitting(true)
-  setReviewStatus({ type: null, message: "" })
-
-  // Store the form element reference
-  const form = event.currentTarget
-  const formData = new FormData(form)
-  const data = {
-    review: formData.get("review"),
   }
 
-  console.log("[v0] Submitting review data:", data)
+  async function handleReviewSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    setIsReviewSubmitting(true)
+    setReviewStatus({ type: null, message: "" })
 
-  try {
-    const response = await fetch("/api/reviews", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-
-    // Check if response is JSON
-    const contentType = response.headers.get("content-type")
-    if (!contentType || !contentType.includes("application/json")) {
-      throw new Error("Server returned non-JSON response")
+    // Store the form element reference
+    const form = event.currentTarget
+    const formData = new FormData(form)
+    const data = {
+      review: formData.get("review"),
     }
 
-    const result = await response.json()
-    console.log("[v0] Review response:", result)
+    console.log("[v0] Submitting review data:", data)
 
-    if (result.success) {
+    try {
+      const response = await fetch("/api/reviews", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+
+      // Check if response is JSON
+      const contentType = response.headers.get("content-type")
+      if (!contentType || !contentType.includes("application/json")) {
+        throw new Error("Server returned non-JSON response")
+      }
+
+      const result = await response.json()
+      console.log("[v0] Review response:", result)
+
+      if (result.success) {
+        setReviewStatus({
+          type: "success",
+          message: "Thank you for your review! You will be redirected to complete it on Google.",
+        })
+        // Open Google review page in a new tab
+        window.open("https://www.google.com/search?q=yewtreeinn.com+reviews#lrd=0x0:0x0,3", "_blank")
+        // Use the stored form reference
+        form.reset()
+      } else {
+        throw new Error(result.error || "Failed to submit review")
+      }
+    } catch (error) {
+      console.error("Error submitting review:", error)
       setReviewStatus({
-        type: "success",
-        message: "Thank you for your review! You will be redirected to complete it on Google.",
+        type: "error",
+        message: "Failed to submit review. Please try again.",
       })
-      // Open Google review page in a new tab
-      window.open("https://www.google.com/search?q=yewtreeinn.com+reviews#lrd=0x0:0x0,3", "_blank")
-      // Use the stored form reference
-      form.reset()
-    } else {
-      throw new Error(result.error || "Failed to submit review")
+    } finally {
+      setIsReviewSubmitting(false)
     }
-  } catch (error) {
-    console.error("Error submitting review:", error)
-    setReviewStatus({
-      type: "error",
-      message: "Failed to submit review. Please try again.",
-    })
-  } finally {
-    setIsReviewSubmitting(false)
   }
-}
 
   return (
-    <footer id="contact" className="py-20">
-      <div className="bg-[#0d2e24] container mx-auto p-4 sm:p-6 md:p-8 lg:p-10 rounded-3xl">
+    <footer id="contact" className="pt-8 pb-0 md:pt-16 md:pb-16 lg:pt-20 lg:pb-20">
+      <div className="bg-[#0d2e24] container mx-auto px-6 lg:px-8 py-8 md:py-12 lg:py-16 rounded-none md:rounded-3xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
           {/* Left Side - Restaurant Info */}
           <div className="space-y-6 md:space-y-8">
@@ -144,7 +141,7 @@ async function handleReviewSubmit(event: React.FormEvent<HTMLFormElement>) {
               <img
                 src="/yewtreeinn_logowhite.svg"
                 alt="Yew Tree Inn Logo"
-                className="size-44 aspect-auto object-contain"
+                className="size-32 md:size-44 aspect-auto object-contain"
               />
             </div>
 
@@ -168,59 +165,56 @@ async function handleReviewSubmit(event: React.FormEvent<HTMLFormElement>) {
 
               <div>
                 <h4 className="text-[#e8d3a5] font-semibold mb-2 text-sm md:text-base">Leave A Review</h4>
-             
+
                 <form onSubmit={handleReviewSubmit} className="">
-                  <div className="flex items-center gap-1" >
-                   <Input
-                    name="review"
-                    required
-                    minLength={10}
-                    className="bg-white h-10 md:h-12 w-full max-w-[330px]"
-                    placeholder="Write your review..."
-                  />
-          
-                  <Button
-                    type="submit"
-                    disabled={isReviewSubmitting}
-                    className="bg-[#e8d3a5] text-[#0d2e24] hover:bg-[#ffe2aa] h-10 md:h-12 px-8 py-2"
-                  >
-                       {isReviewSubmitting ? "..." : <ArrowRight className="size-6" />}
-                  </Button>
+                  <div className="flex flex-row items-stretch sm:items-center gap-2">
+                    <Input
+                      name="review"
+                      required
+                      minLength={10}
+                      className="bg-white h-12 w-full max-w-[330px]"
+                      placeholder="Write your review..."
+                    />
+
+                    <Button
+                      type="submit"
+                      disabled={isReviewSubmitting}
+                      className="bg-[#e8d3a5] text-[#0d2e24] hover:bg-[#ffe2aa] h-12 px-8"
+                    >
+                      {isReviewSubmitting ? "..." : <ArrowRight className="size-4 md:size-6" />}
+                    </Button>
                   </div>
-                 
-                  <div className="block" >
-                   {reviewStatus.message && (
-                    <div className={`text-xs ${reviewStatus.type === "success" ? "text-green-400" : "text-red-400"}`}>
-                      {reviewStatus.message}
-                    </div>
+
+                  <div className="block mt-2">
+                    {reviewStatus.message && (
+                      <div className={`text-xs ${reviewStatus.type === "success" ? "text-green-400" : "text-red-400"}`}>
+                        {reviewStatus.message}
+                      </div>
                     )}
                   </div>
                 </form>
               </div>
             </div>
-
-            {/* Book Table Button */}
-            
           </div>
 
           {/* Right Side - Contact Form */}
-          <div className="bg-white rounded-3xl md:rounded-3xl p-8">
-            <h3 className="font-display text-3xl md:text-4xl lg:text-5xl text-[#0d2e24] mb-4">CONTACT US</h3>
+          <div className="bg-white rounded-3xl p-6 md:p-8">
+            <h3 className="font-display text-3xl md:text-4xl lg:text-5xl text-[#0d2e24] mb-4 md:mb-6">CONTACT US</h3>
 
             <form onSubmit={handleContactSubmit} className="space-y-4">
               <div>
                 <label className="block text-[#0d2e24] mb-0.5 text-sm">Name</label>
-                <Input name="name" required className="bg-[#ececec] border-none" />
+                <Input name="name" required className="bg-[#ececec] border-none h-10 md:h-12" />
               </div>
 
               <div>
                 <label className="block text-[#0d2e24] mb-0.5 text-sm">Email</label>
-                <Input name="email" type="email" required className="bg-[#ececec] border-none" />
+                <Input name="email" type="email" required className="bg-[#ececec] border-none h-10 md:h-12" />
               </div>
 
               <div>
                 <label className="block text-[#0d2e24] mb-0.5 text-sm">Phone Number</label>
-                <Input name="phone" type="tel" className="bg-[#ececec] border-none" />
+                <Input name="phone" type="tel" className="bg-[#ececec] border-none h-10 md:h-12" />
               </div>
 
               <div>
@@ -253,29 +247,26 @@ async function handleReviewSubmit(event: React.FormEvent<HTMLFormElement>) {
         </div>
 
         {/* Bottom Footer */}
-        <div className="text-white pt-0 gap-x-4 flex flex-col md:flex-row justify-between items-end">
-           <div className="flex flex-row items-center gap-1">
-              <Button
-              
-                className="text-[#0d2e24] bg-[#E8D3A5] hover:bg-[#134435] px-6 h-14 rounded-full hover-lift text-sm sm:text-base w-auto sm:w-auto"
-              >
-                Book A Table Now
-              </Button>
-              <Button
-                size="icon"
-               
-                className="text-[#0d2e24] text-lg font-medium bg-[#E8D3A5] hover:bg-[#134435] h-14 w-14 flex items-center justify-center rounded-full hover-lift"
-              >
-                →
-              </Button>
-            </div>
-          <div className="flex items-center gap-2">
-            <Instagram className="size-4 md:size-5" />
-            <Twitter className="size-4 md:size-5" />
-            <p className="text-white text-xs md:text-sm">Yewtreeinn</p>
-            <p className="ml-3 text-white text-xs md:text-sm">Yewtreeinn.com 2025. All Rights Reserved</p>
+        <div className="text-white pt-8 md:pt-12 gap-x-4 flex flex-col md:flex-row justify-between items-center md:items-end">
+          <div className="flex justify-center items-center gap-2 mb-4 md:mb-0">
+            <Button className="text-[#0d2e24] bg-[#E8D3A5] hover:bg-[#134435] px-6 h-12 md:h-14 rounded-full hover-lift text-sm sm:text-base w-full sm:w-auto">
+              Book A Table Now
+            </Button>
+            <Button
+              size="icon"
+              className="text-[#0d2e24] text-lg font-medium bg-[#E8D3A5] hover:bg-[#134435] h-12 w-12 md:h-14 md:w-14 flex items-center justify-center rounded-full hover-lift"
+            >
+              →
+            </Button>
           </div>
-        
+          <div className="flex flex-col sm:flex-row items-center gap-2 text-center sm:text-left">
+            <div className="flex items-center gap-2">
+              <Instagram className="size-4 md:size-5" />
+              <Twitter className="size-4 md:size-5" />
+              <p className="text-white text-xs md:text-sm">Yewtreeinn</p>
+            </div>
+            <p className="text-white text-xs md:text-sm">Yewtreeinn.com 2025. All Rights Reserved</p>
+          </div>
         </div>
       </div>
     </footer>
