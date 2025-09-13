@@ -132,7 +132,7 @@ export default function Footer() {
 
   return (
     <footer id="contact" className="pt-8 pb-0 md:pt-16 md:pb-16 lg:pt-20 lg:pb-20">
-      <div className="bg-[#0d2e24] container mx-auto px-6 lg:px-8 py-8 md:py-12 lg:py-16 rounded-none md:rounded-3xl">
+      <div className="bg-[#0d2e24] container mx-auto px-6 lg:px-8 py-10 rounded-none md:rounded-3xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
           {/* Left Side - Restaurant Info */}
           <div className="space-y-6 md:space-y-8">
@@ -247,7 +247,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Footer */}
-        <div className="text-white pt-8 md:pt-12 gap-x-4 flex flex-col md:flex-row justify-between items-center md:items-end">
+        <div className="text-white gap-x-4 flex flex-col md:flex-row justify-between items-center md:items-end">
           <div className="flex justify-center items-center gap-2 mb-4 md:mb-0">
             <Button className="text-[#0d2e24] bg-[#E8D3A5] hover:bg-[#134435] px-6 h-12 md:h-14 rounded-full hover-lift text-sm sm:text-base w-full sm:w-auto">
               Book A Table Now

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { ChevronDown, ChevronRight } from "lucide-react"
+import { ChevronDown, ChevronRight, Loader2 } from "lucide-react"
 
 export default function Bookings() {
   const [isVisible, setIsVisible] = useState(false)
@@ -12,6 +12,14 @@ export default function Bookings() {
   const [selectedTime, setSelectedTime] = useState("")
   const [selectedMonth, setSelectedMonth] = useState(8) // September (0-indexed)
   const [selectedYear] = useState(2025)
+  const [isLoading, setIsLoading] = useState(false)
+  const [bookingStatus, setBookingStatus] = useState<"idle" | "success" | "error">("idle")
+  const [customerInfo, setCustomerInfo] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    notes: "",
+  })
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -82,19 +90,59 @@ export default function Bookings() {
       description:
         "Pick from our available time slots. We offer both lunch and dinner services with carefully curated time windows for the best experience.",
     },
+    4: {
+      title: "Details",
+      description:
+        "Please provide your contact information so we can confirm your reservation and reach out if needed.",
+    },
   }
 
-  const handleBooking = () => {
-    // Here you would integrate with app.resos
-    const bookingData = {
-      people: selectedPeople,
-      date: selectedDate,
-      time: selectedTime,
-    }
+  const handleBooking = async () => {
+    setIsLoading(true)
+    setBookingStatus("idle")
 
-    // Redirect to resos or send data to their API
-    console.log("Booking data:", bookingData)
-    alert("Redirecting to booking system...")
+    try {
+      const bookingData = {
+        people: selectedPeople,
+        date: `${selectedYear}-${(selectedMonth + 1).toString().padStart(2, "0")}-${selectedDate}`,
+        time: selectedTime,
+        customerInfo,
+      }
+
+      console.log("[v0] Submitting booking:", bookingData)
+
+      const response = await fetch("/api/resos/booking", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(bookingData),
+      })
+
+      const result = await response.json()
+      console.log("[v0] Booking response:", result)
+
+      if (response.ok && result.success) {
+        setBookingStatus("success")
+        // Reset form after successful booking
+        setTimeout(() => {
+          setCurrentStep(1)
+          setSelectedPeople(2)
+          setSelectedDate("")
+          setSelectedTime("")
+          setCustomerInfo({ name: "", email: "", phone: "", notes: "" })
+          setBookingStatus("idle")
+        }, 3000)
+      } else {
+        setBookingStatus("error")
+        console.error("[v0] Booking failed:", result.error)
+      }
+    } catch (error) {
+      console.error("[v0] Booking error:", error)
+      setBookingStatus("error")
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -147,6 +195,18 @@ export default function Bookings() {
                 {stepDescriptions[currentStep as keyof typeof stepDescriptions].description}
               </p>
             </div>
+
+            {bookingStatus === "success" && (
+              <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
+                <strong>Success!</strong> Your booking has been confirmed. You'll receive a confirmation email shortly.
+              </div>
+            )}
+
+            {bookingStatus === "error" && (
+              <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+                <strong>Error:</strong> There was a problem creating your booking. Please try again or call us directly.
+              </div>
+            )}
           </div>
 
           {/* Right Column - Booking Interface */}
@@ -155,7 +215,7 @@ export default function Bookings() {
               <div className="w-full bg-[#0d2e24] rounded-full flex justify-between items-center h-12 md:h-14 px-1">
                 <button
                   onClick={() => setCurrentStep(1)}
-                  className={`px-3 md:px-4 h-10 md:h-12 rounded-full text-sm font-medium transition-all ${
+                  className={`px-2 md:px-3 h-10 md:h-12 rounded-full text-xs md:text-sm font-medium transition-all ${
                     currentStep === 1 ? "bg-[#e8d3a5] text-[#0d2e24]" : "text-white hover:bg-[#134435]"
                   }`}
                 >
@@ -163,7 +223,7 @@ export default function Bookings() {
                 </button>
                 <button
                   onClick={() => setCurrentStep(2)}
-                  className={`px-3 md:px-4 h-10 md:h-12 rounded-full text-sm font-medium transition-all ${
+                  className={`px-2 md:px-3 h-10 md:h-12 rounded-full text-xs md:text-sm font-medium transition-all ${
                     currentStep === 2 ? "bg-[#e8d3a5] text-[#0d2e24]" : "text-white hover:bg-[#134435]"
                   }`}
                 >
@@ -171,11 +231,19 @@ export default function Bookings() {
                 </button>
                 <button
                   onClick={() => setCurrentStep(3)}
-                  className={`px-3 md:px-4 h-10 md:h-12 rounded-full text-sm font-medium transition-all ${
+                  className={`px-2 md:px-3 h-10 md:h-12 rounded-full text-xs md:text-sm font-medium transition-all ${
                     currentStep === 3 ? "bg-[#e8d3a5] text-[#0d2e24]" : "text-white hover:bg-[#134435]"
                   }`}
                 >
                   Time
+                </button>
+                <button
+                  onClick={() => setCurrentStep(4)}
+                  className={`px-2 md:px-3 h-10 md:h-12 rounded-full text-xs md:text-sm font-medium transition-all ${
+                    currentStep === 4 ? "bg-[#e8d3a5] text-[#0d2e24]" : "text-white hover:bg-[#134435]"
+                  }`}
+                >
+                  Details
                 </button>
               </div>
             </div>
@@ -277,18 +345,92 @@ export default function Bookings() {
                   ))}
                 </div>
 
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
-                  <p className="text-gray-600 text-sm">
-                    {selectedPeople} People
-                    <br />
-                    {months[selectedMonth]} {selectedDate}, {selectedYear}
-                  </p>
+                <div className="flex justify-center">
                   <Button
-                    onClick={handleBooking}
+                    onClick={() => setCurrentStep(4)}
                     disabled={!selectedTime}
                     className="bg-[#0d2e24] text-white hover:bg-[#134435] px-6 md:px-8 hover-lift disabled:opacity-50 w-full sm:w-auto"
                   >
-                    Done
+                    Next
+                  </Button>
+                </div>
+              </div>
+            )}
+
+            {/* Step 4: Customer Information */}
+            {currentStep === 4 && (
+              <div className="bg-gray-100 rounded-2xl p-6 md:p-8">
+                <div className="space-y-4 mb-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Name *</label>
+                    <input
+                      type="text"
+                      value={customerInfo.name}
+                      onChange={(e) => setCustomerInfo({ ...customerInfo, name: e.target.value })}
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0d2e24] focus:border-transparent"
+                      placeholder="Your full name"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                    <input
+                      type="email"
+                      value={customerInfo.email}
+                      onChange={(e) => setCustomerInfo({ ...customerInfo, email: e.target.value })}
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0d2e24] focus:border-transparent"
+                      placeholder="your.email@example.com"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+                    <input
+                      type="tel"
+                      value={customerInfo.phone}
+                      onChange={(e) => setCustomerInfo({ ...customerInfo, phone: e.target.value })}
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0d2e24] focus:border-transparent"
+                      placeholder="+47 000 000 000"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Special Requests</label>
+                    <textarea
+                      value={customerInfo.notes}
+                      onChange={(e) => setCustomerInfo({ ...customerInfo, notes: e.target.value })}
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0d2e24] focus:border-transparent"
+                      placeholder="Dietary restrictions, special occasions, etc."
+                      rows={3}
+                    />
+                  </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+                  <div className="text-sm text-gray-600">
+                    <p>
+                      <strong>{selectedPeople} People</strong>
+                    </p>
+                    <p>
+                      {months[selectedMonth]} {selectedDate}, {selectedYear}
+                    </p>
+                    <p>{selectedTime}</p>
+                  </div>
+                  <Button
+                    onClick={handleBooking}
+                    disabled={!customerInfo.name || !customerInfo.email || isLoading}
+                    className="bg-[#0d2e24] text-white hover:bg-[#134435] px-6 md:px-8 hover-lift disabled:opacity-50 w-full sm:w-auto"
+                  >
+                    {isLoading ? (
+                      <>
+                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                        Booking...
+                      </>
+                    ) : (
+                      "Confirm Booking"
+                    )}
                   </Button>
                 </div>
               </div>
