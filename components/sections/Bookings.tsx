@@ -211,11 +211,11 @@ export default function Bookings() {
 
           {/* Right Column - Booking Interface */}
           <div className={`${isVisible ? "animate-fade-in-up animate-delay-200" : "opacity-0"}`}>
-            <div className="flex items-center justify-center mb-6">
+            <div className="flex items-center justify-center mb-1">
               <div className="w-full bg-[#0d2e24] rounded-full flex justify-between items-center h-12 md:h-14 px-1">
                 <button
                   onClick={() => setCurrentStep(1)}
-                  className={`px-2 md:px-3 h-10 md:h-12 rounded-full text-xs md:text-sm font-medium transition-all ${
+                  className={`w-[200px] px-2 md:px-3 h-10 md:h-12 rounded-full text-xs md:text-sm font-medium transition-all ${
                     currentStep === 1 ? "bg-[#e8d3a5] text-[#0d2e24]" : "text-white hover:bg-[#134435]"
                   }`}
                 >
@@ -223,7 +223,7 @@ export default function Bookings() {
                 </button>
                 <button
                   onClick={() => setCurrentStep(2)}
-                  className={`px-2 md:px-3 h-10 md:h-12 rounded-full text-xs md:text-sm font-medium transition-all ${
+                  className={`w-[200px] px-2 md:px-3 h-10 md:h-12 rounded-full text-xs md:text-sm font-medium transition-all ${
                     currentStep === 2 ? "bg-[#e8d3a5] text-[#0d2e24]" : "text-white hover:bg-[#134435]"
                   }`}
                 >
@@ -231,7 +231,7 @@ export default function Bookings() {
                 </button>
                 <button
                   onClick={() => setCurrentStep(3)}
-                  className={`px-2 md:px-3 h-10 md:h-12 rounded-full text-xs md:text-sm font-medium transition-all ${
+                  className={`w-[200px] px-2 md:px-3 h-10 md:h-12 rounded-full text-xs md:text-sm font-medium transition-all ${
                     currentStep === 3 ? "bg-[#e8d3a5] text-[#0d2e24]" : "text-white hover:bg-[#134435]"
                   }`}
                 >
@@ -239,7 +239,7 @@ export default function Bookings() {
                 </button>
                 <button
                   onClick={() => setCurrentStep(4)}
-                  className={`px-2 md:px-3 h-10 md:h-12 rounded-full text-xs md:text-sm font-medium transition-all ${
+                  className={`w-[200px] px-2 md:px-3 h-10 md:h-12 rounded-full text-xs md:text-sm font-medium transition-all ${
                     currentStep === 4 ? "bg-[#e8d3a5] text-[#0d2e24]" : "text-white hover:bg-[#134435]"
                   }`}
                 >
@@ -250,15 +250,15 @@ export default function Bookings() {
 
             {/* Step 1: People Selection */}
             {currentStep === 1 && (
-              <div className="w-full bg-gray-100 rounded-2xl p-6 md:p-8 text-center">
-                <div className="grid grid-cols-4 gap-3 md:gap-4 max-w-sm md:max-w-md mx-auto mb-6 md:mb-8">
+              <div className="w-full bg-gray-100 rounded-3xl p-6 md:p-8">
+                <div className="grid grid-cols-4 place-items-center gap-3 md:gap-4 max-w-sm md:max-w-md mx-auto mb-6 md:mb-8">
                   {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
                     <button
                       key={num}
                       onClick={() => setSelectedPeople(num)}
-                      className={`w-12 h-12 md:w-16 md:h-16 rounded-lg font-display text-lg md:text-xl transition-all hover-lift ${
+                      className={` md:w-16 md:h-16 w-12 h-12 rounded-lg font-display md:text-4xl text-3xl transition-all hover-lift ${
                         selectedPeople === num
-                          ? "bg-[#e8d3a5] text-[#0d2e24]"
+                          ? "bg-[#e8d3a5] text-[#0d2e24] "
                           : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                       }`}
                     >
@@ -266,20 +266,22 @@ export default function Bookings() {
                     </button>
                   ))}
                 </div>
-                <p className="text-gray-600 mb-6 md:mb-8 text-sm">Contact +47 000 000 0000 to book more people</p>
-                <Button
+                <div className="w-full flex flex-col md:flex-row items-center justify-between gap-0 md:gap-0" >
+                   <p className="text-gray-600 mb-6 md:mb-0 text-sm">Contact +47 000 000 0000 to book more people</p>
+                   <Button
                   onClick={() => setCurrentStep(2)}
-                  className="bg-[#0d2e24] text-white hover:bg-[#134435] px-6 md:px-8 hover-lift"
-                >
-                  Next
-                </Button>
+                  className="w-full md:w-fit bg-[#0d2e24] text-[#FFE2AA] hover:bg-[#134435] rounded-lg h-11 px-6 md:px-8 hover-lift"
+                  >
+                    Next
+                  </Button>
+                </div>
+               
               </div>
             )}
 
             {/* Step 2: Date Selection */}
             {currentStep === 2 && (
-              <div className="bg-gray-100 rounded-2xl p-6 md:p-8">
-                <div className="flex items-center justify-between mb-4 md:mb-6">
+              <div className="w-full bg-gray-100 rounded-2xl p-6 md:p-8 space-y-6">
                   <select
                     value={selectedMonth}
                     onChange={(e) => setSelectedMonth(Number.parseInt(e.target.value))}
@@ -291,15 +293,15 @@ export default function Bookings() {
                       </option>
                     ))}
                   </select>
-                  <ChevronDown className="w-5 h-5 text-gray-600" />
-                </div>
+                 
+                
 
-                <div className="grid grid-cols-7 gap-1 md:gap-2 mb-6 md:mb-8">
+                <div className="grid grid-cols-7 place-items-center gap-1 md:gap-2">
                   {generateCalendarDays().map((day) => (
                     <button
                       key={day}
                       onClick={() => setSelectedDate(day)}
-                      className={`w-10 h-10 md:w-12 md:h-12 rounded-lg font-display font-semibold text-sm md:text-base transition-all hover-lift ${
+                      className={`w-10 h-10 md:w-12 md:h-12 rounded-lg font-display md:text-4xl text-3xl transition-all hover-lift ${
                         selectedDate === day
                           ? "bg-[#e8d3a5] text-[#0d2e24]"
                           : "bg-gray-100 text-gray-600 hover:bg-gray-200"
@@ -310,11 +312,11 @@ export default function Bookings() {
                   ))}
                 </div>
 
-                <div className="flex justify-center">
+                <div className="flex justify-center md:justify-end">
                   <Button
                     onClick={() => setCurrentStep(3)}
                     disabled={!selectedDate}
-                    className="bg-[#0d2e24] text-white hover:bg-[#134435] px-6 md:px-8 hover-lift disabled:opacity-50"
+                    className="w-full md:w-fit bg-[#0d2e24] text-[#FFE2AA] hover:bg-[#134435] h-11 rounded-lg px-6 md:px-8 hover-lift disabled:opacity-50"
                   >
                     Next
                   </Button>
@@ -324,20 +326,20 @@ export default function Bookings() {
 
             {/* Step 3: Time Selection */}
             {currentStep === 3 && (
-              <div className="bg-gray-100 rounded-2xl p-6 md:p-8">
-                <h3 className="text-base md:text-lg font-medium text-[#0d2e24] mb-4">
+              <div className="w-full bg-gray-100 rounded-2xl p-6 md:p-8">
+                <h3 className="hidden text-base md:text-lg font-medium text-[#0d2e24] mb-4">
                   Select a time from an available slot
                 </h3>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6 md:mb-8">
+                <div className="grid grid-cols-1 place-items-center sm:grid-cols-2 gap-3 mb-6 md:mb-8">
                   {timeSlots.map((time) => (
                     <button
                       key={time}
                       onClick={() => setSelectedTime(time)}
-                      className={`p-3 rounded-lg font-display font-semibold text-sm md:text-base transition-all hover-lift ${
+                      className={`p-3 rounded-lg font-display text-3xl md:text-4xl transition-all hover-lift ${
                         selectedTime === time
-                          ? "bg-[#e8d3a5] text-[#0d2e24]"
-                          : "bg-white text-gray-600 hover:bg-gray-200"
+                          ? "w-full bg-[#e8d3a5] text-[#0d2e24]"
+                          : "w-full bg-white text-gray-600 hover:bg-gray-200"
                       }`}
                     >
                       {time}
@@ -345,11 +347,11 @@ export default function Bookings() {
                   ))}
                 </div>
 
-                <div className="flex justify-center">
+                <div className="flex justify-center md:justify-end">
                   <Button
                     onClick={() => setCurrentStep(4)}
                     disabled={!selectedTime}
-                    className="bg-[#0d2e24] text-white hover:bg-[#134435] px-6 md:px-8 hover-lift disabled:opacity-50 w-full sm:w-auto"
+                    className="w-full md:w-fit bg-[#0d2e24] text-[#FFE2AA] hover:bg-[#134435] h-11 rounded-lg px-6 md:px-8 hover-lift disabled:opacity-50 w-full sm:w-auto"
                   >
                     Next
                   </Button>
@@ -362,7 +364,7 @@ export default function Bookings() {
               <div className="bg-gray-100 rounded-2xl p-6 md:p-8">
                 <div className="space-y-4 mb-6">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Name *</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-0">Name *</label>
                     <input
                       type="text"
                       value={customerInfo.name}
@@ -374,7 +376,7 @@ export default function Bookings() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-0">Email *</label>
                     <input
                       type="email"
                       value={customerInfo.email}
@@ -386,7 +388,7 @@ export default function Bookings() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-0">Phone</label>
                     <input
                       type="tel"
                       value={customerInfo.phone}
@@ -397,7 +399,7 @@ export default function Bookings() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Special Requests</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-0">Special Requests</label>
                     <textarea
                       value={customerInfo.notes}
                       onChange={(e) => setCustomerInfo({ ...customerInfo, notes: e.target.value })}
@@ -408,7 +410,7 @@ export default function Bookings() {
                   </div>
                 </div>
 
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+                <div className="flex flex-col sm:flex-row sm:justify-between md:items-end items-start gap-4">
                   <div className="text-sm text-gray-600">
                     <p>
                       <strong>{selectedPeople} People</strong>
@@ -421,7 +423,7 @@ export default function Bookings() {
                   <Button
                     onClick={handleBooking}
                     disabled={!customerInfo.name || !customerInfo.email || isLoading}
-                    className="bg-[#0d2e24] text-white hover:bg-[#134435] px-6 md:px-8 hover-lift disabled:opacity-50 w-full sm:w-auto"
+                    className="bg-[#0d2e24] text-[#FFE2AA] hover:bg-[#134435] h-11 rounded-lg px-6 md:px-8 hover-lift disabled:opacity-50 w-full sm:w-auto"
                   >
                     {isLoading ? (
                       <>

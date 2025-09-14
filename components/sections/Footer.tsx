@@ -160,7 +160,7 @@ export default function Footer() {
 
               <div>
                 <h4 className="text-[#e8d3a5] font-semibold text-sm md:text-base">Email</h4>
-                <p className="text-white text-sm md:text-base">hello@yewtreeinnrestaurant.com</p>
+                <a href="mailto:info@yewtreeinnrestaurant.com" className="text-white text-sm md:text-base">info@yewtreeinnrestaurant.com</a>
               </div>
 
               <div>
@@ -248,7 +248,7 @@ export default function Footer() {
 
         {/* Bottom Footer */}
         <div className="text-white gap-x-4 flex flex-col md:flex-row justify-between items-center md:items-end">
-          <div className="flex justify-center items-center gap-2 mb-4 md:mb-0">
+          <section id="bookings" className="flex justify-center items-center gap-2 mb-4 md:mb-0">
             <Button className="text-[#0d2e24] bg-[#E8D3A5] hover:bg-[#134435] px-6 h-12 md:h-14 rounded-full hover-lift text-sm sm:text-base w-full sm:w-auto">
               Book A Table Now
             </Button>
@@ -258,7 +258,7 @@ export default function Footer() {
             >
               →
             </Button>
-          </div>
+          </section>
           <div className="flex flex-col sm:flex-row items-center gap-2 text-center sm:text-left">
             <div className="flex items-center gap-2">
               <Instagram className="size-4 md:size-5" />

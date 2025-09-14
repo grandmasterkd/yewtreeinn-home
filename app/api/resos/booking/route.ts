@@ -5,8 +5,8 @@ export async function POST(request: NextRequest) {
   try {
     const { people, date, time, customerInfo } = await request.json()
 
-    const apiKey = process.env.RESOS_API_KEY
-    const restaurantId = process.env.RESOS_RESTAURANT_ID
+    const apiKey = process.env.UAT_RESOS_API_KEY
+    const restaurantId = process.env.UAT_RESOS_RESTAURANT_ID
     const baseUrl = process.env.RESOS_BASE_URL || "https://api.resos.com/v1"
 
     if (!apiKey || !restaurantId) {
@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
       duration: 120,
       tables: [], // Empty array as shown in docs, or you might need to get table IDs
       guest: { // Changed from "customer" to "guest"
-        name: customerInfo?.name || "Online Booking",
+        name: customerInfo?.name || "Yew Tree Inn Online Booking",
         email: customerInfo?.email || "",
         phone: customerInfo?.phone || "",
         notificationSms: false,
@@ -40,8 +40,8 @@ export async function POST(request: NextRequest) {
       source: "website",
       comment: customerInfo?.notes || "", // Guest-facing comment
       note: "", // Internal note for restaurant
-      noteAuthor: "Website Booking",
-      referrer: "https://your-website.com",
+      noteAuthor: "Yew Tree Inn Booking",
+      referrer: "https://yewtreeinn.com",
       languageCode: "en"
     }
 
