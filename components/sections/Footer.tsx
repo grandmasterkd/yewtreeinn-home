@@ -132,7 +132,7 @@ export default function Footer() {
 
   return (
     <footer id="contact" className="pt-8 pb-0 md:pt-16 md:pb-16 lg:pt-20 lg:pb-20">
-      <div className="bg-[#0d2e24] container mx-auto px-6 lg:px-8 py-8 md:py-12 lg:py-16 rounded-none md:rounded-3xl">
+      <div className="bg-[#0d2e24] container mx-auto px-6 lg:px-8 py-10 rounded-none md:rounded-3xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
           {/* Left Side - Restaurant Info */}
           <div className="space-y-6 md:space-y-8">
@@ -160,7 +160,7 @@ export default function Footer() {
 
               <div>
                 <h4 className="text-[#e8d3a5] font-semibold text-sm md:text-base">Email</h4>
-                <p className="text-white text-sm md:text-base">hello@yewtreeinnrestaurant.com</p>
+                <a href="mailto:info@yewtreeinnrestaurant.com" className="text-white text-sm md:text-base">info@yewtreeinnrestaurant.com</a>
               </div>
 
               <div>
@@ -247,8 +247,8 @@ export default function Footer() {
         </div>
 
         {/* Bottom Footer */}
-        <div className="text-white pt-8 md:pt-12 gap-x-4 flex flex-col md:flex-row justify-between items-center md:items-end">
-          <div className="flex justify-center items-center gap-2 mb-4 md:mb-0">
+        <div className="text-white gap-x-4 flex flex-col md:flex-row justify-between items-center md:items-end">
+          <section id="bookings" className="flex justify-center items-center gap-2 mb-4 md:mb-0">
             <Button className="text-[#0d2e24] bg-[#E8D3A5] hover:bg-[#134435] px-6 h-12 md:h-14 rounded-full hover-lift text-sm sm:text-base w-full sm:w-auto">
               Book A Table Now
             </Button>
@@ -258,7 +258,7 @@ export default function Footer() {
             >
               →
             </Button>
-          </div>
+          </section>
           <div className="flex flex-col sm:flex-row items-center gap-2 text-center sm:text-left">
             <div className="flex items-center gap-2">
               <Instagram className="size-4 md:size-5" />
