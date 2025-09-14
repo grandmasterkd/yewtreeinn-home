@@ -150,7 +150,7 @@ export default function Bookings() {
       <div className="container mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           {/* Left Column */}
-          <div className={`space-y-6 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+          <div className={`space-y-4 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
             <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-[#0d2e24]">
               GET BOOKED AT
               <br />
@@ -191,7 +191,7 @@ export default function Bookings() {
               <h3 className="font-medium text-xl md:text-2xl text-[#0d2e24]">
                 {stepDescriptions[currentStep as keyof typeof stepDescriptions].title}
               </h3>
-              <p className="w-full text-base md:text-lg">
+              <p className="w-full lg:max-w-md text-base">
                 {stepDescriptions[currentStep as keyof typeof stepDescriptions].description}
               </p>
             </div>

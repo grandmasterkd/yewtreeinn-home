@@ -110,7 +110,7 @@ export default function Hero() {
             className={`transition-all duration-1000 ${isLoaded ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}`}
             style={{ transitionDelay: "800ms" }}
           >
-            <span className="font-display text-white text-7xl xl:text-8xl">
+            <span className="font-display text-white text-6xl md:text-7xl xl:text-8xl">
               LOREM IPSUM
               <br />
               DOLOR SIT AMET

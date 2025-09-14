@@ -247,7 +247,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Footer */}
-        <div className="text-white gap-x-4 flex flex-col md:flex-row justify-between items-center md:items-end">
+        <div className="mt-8 md:mt-0 text-white gap-x-4 flex flex-col md:flex-row justify-between items-center md:items-end">
           <section id="bookings" className="flex justify-center items-center gap-2 mb-4 md:mb-0">
             <Button className="text-[#0d2e24] bg-[#E8D3A5] hover:bg-[#134435] px-6 h-12 md:h-14 rounded-full hover-lift text-sm sm:text-base w-full sm:w-auto">
               Book A Table Now

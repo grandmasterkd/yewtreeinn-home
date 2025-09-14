@@ -96,7 +96,7 @@ export default function Reviews() {
     <section id="reviews" className="py-8 md:py-16 lg:py-20 px-6 lg:px-8 bg-white">
       <div className="container mx-auto">
         {/* Header */}
-        <div className={`text-left mb-8 md:mb-12 lg:mb-16 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+        <div className={`pl-0 lg:pl-8 text-left mb-8 md:mb-12 lg:mb-16 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-[#0d2e24] mb-4">
             AND SEE WHAT
             <br />
@@ -118,12 +118,12 @@ export default function Reviews() {
             >
               {reviews.map((review, index) => (
                 <div key={index} className="w-full flex-shrink-0 px-2">
-                  <div className="bg-[#ececec] rounded-2xl p-6">
+                  <div className="bg-[#FFF1D3] rounded-3xl p-6">
                     {/* Reviewer Info */}
                     <div className="flex items-center gap-4 mb-6">
-                      <div className="w-12 h-12 bg-gray-400 rounded-full" />
+                      <div className="w-12 h-12 bg-[#C49A6C] rounded-full" />
                       <div>
-                        <h4 className="font-semibold text-[#0d2e24]">{review.name}</h4>
+                        <h4 className="font-semibold text-[#0D2E24]">{review.name}</h4>
                         <div className="flex items-center gap-2">
                           <span className="text-sm text-gray-600">{review.date}</span>
                           <div className="flex">
@@ -187,12 +187,12 @@ export default function Reviews() {
               {/* First set of reviews */}
               {reviews.map((review, index) => (
                 <div key={index} className="flex-shrink-0 w-80 lg:w-96">
-                  <div className="bg-[#ececec] rounded-2xl p-8 h-full">
+                  <div className="bg-[#FFF1D3] rounded-3xl p-8 h-full">
                     {/* Reviewer Info */}
                     <div className="flex items-center gap-4 mb-6">
-                      <div className="w-12 h-12 bg-gray-400 rounded-full" />
+                      <div className="w-12 h-12 bg-[#C49A6C] rounded-full" />
                       <div>
-                        <h4 className="font-semibold text-[#0d2e24]">{review.name}</h4>
+                        <h4 className="font-semibold text-[#0D2E24]">{review.name}</h4>
                         <div className="flex items-center gap-2">
                           <span className="text-sm text-gray-600">{review.date}</span>
                           <div className="flex">
@@ -204,19 +204,19 @@ export default function Reviews() {
                       </div>
                     </div>
                     {/* Review Text */}
-                    <p className="text-gray-700 leading-relaxed">{review.text}</p>
+                    <p className="text-sm text-gray-700 leading-relaxed">{review.text}</p>
                   </div>
                 </div>
               ))}
               {/* Duplicate set for seamless loop */}
               {reviews.map((review, index) => (
                 <div key={`duplicate-${index}`} className="flex-shrink-0 w-80 lg:w-96">
-                  <div className="bg-[#ececec] rounded-2xl p-8 h-full">
+                  <div className="bg-[#FFF1D3] rounded-3xl p-8 h-full">
                     {/* Reviewer Info */}
                     <div className="flex items-center gap-4 mb-6">
-                      <div className="w-12 h-12 bg-gray-400 rounded-full" />
+                      <div className="w-12 h-12 bg-[#C49A6C] rounded-full" />
                       <div>
-                        <h4 className="font-semibold text-[#0d2e24]">{review.name}</h4>
+                        <h4 className="font-semibold text-[#0D2E24]">{review.name}</h4>
                         <div className="flex items-center gap-2">
                           <span className="text-sm text-gray-600">{review.date}</span>
                           <div className="flex">
@@ -228,7 +228,7 @@ export default function Reviews() {
                       </div>
                     </div>
                     {/* Review Text */}
-                    <p className="text-gray-700 leading-relaxed">{review.text}</p>
+                    <p className="text-sm text-gray-700 leading-relaxed">{review.text}</p>
                   </div>
                 </div>
               ))}

@@ -24,29 +24,29 @@ export default function About() {
   return (
     <main id="about-us" className="w-full grid place-items-center">
       {/* Left Content */}
-      <section className="container py-8 md:py-16 lg:py-20 space-y-5">
+      <section className="container py-8 md:py-16 lg:py-20">
         <div
-          className={`px-6 lg:pl-8 flex flex-col lg:flex-row items-start gap-y-8 lg:gap-x-12 ${isVisible ? "animate-slide-in-left" : "opacity-0"}`}
+          className={`px-6 lg:px-0 lg:pl-8 flex flex-col lg:flex-row items-start gap-y-8 lg:gap-x-12 ${isVisible ? "animate-slide-in-left" : "opacity-0"}`}
         >
           <div className="w-full lg:max-w-[40%]">
-            <h2 className="font-display text-4xl md:text-4xl lg:text-5xl mb-0 text-black">
+            <h2 className="font-display text-4xl md:text-4xl lg:text-5xl mb-0 text-[#0D2E24]">
               FAMILY OWNED
               <br />
               AND MANAGED
             </h2>
-            <p className="text-black">
+            <p className="">
               For over three generations, the Yew Tree Inn has been a cornerstone of Glasgow's dining scene. Our
               family's passion for exceptional cuisine and warm hospitality creates an unforgettable experience for all.
             </p>
           </div>
 
           <div className="w-full lg:max-w-[40%]">
-            <h3 className="font-display text-4xl md:text-4xl lg:text-5xl mb-0 text-black">
+            <h3 className="font-display text-4xl md:text-4xl lg:text-5xl mb-0 text-[#0D2E24]">
               BRINGING A MODERN
               <br />
               TWIST ON CLASSICS
             </h3>
-            <p className="text-black">
+            <p className="">
               We honor traditional recipes while embracing innovation, creating dishes that surprise and delight. Our
               chefs source the finest local ingredients to craft memorable meals that celebrate both heritage and
               creativity.
@@ -54,7 +54,7 @@ export default function About() {
           </div>
         </div>
 
-        <div className={`px-6 lg:px-4 ${isVisible ? "animate-slide-in-left" : "opacity-0"}`}>
+        <div className={`px-6 lg:px-0 mt-4 lg:mt-8 ${isVisible ? "animate-slide-in-left" : "opacity-0"}`}>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-9 gap-3">
             <div className="col-span-1 md:col-span-1 lg:col-span-6">
               <img

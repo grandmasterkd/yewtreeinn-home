@@ -41,8 +41,8 @@ export default function Gallery() {
   ]
 
   return (
-    <section id="gallery" className="py-8 md:py-16 lg:py-20 bg-white">
-      <div className="container mx-auto px-6 lg:px-8">
+    <section id="gallery" className="py-8 md:py-16 lg:py-20">
+      <div className="container mx-auto px-6 lg:px-0">
         {/* Header */}
         <div className={`pl-0 md:pl-8 text-left mb-8 md:mb-12 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-[#134435] mb-4">
