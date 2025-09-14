@@ -110,21 +110,43 @@ export default function Hero() {
             className={`transition-all duration-1000 ${isLoaded ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}`}
             style={{ transitionDelay: "800ms" }}
           >
-            <span className="font-display text-white text-7xl xl:text-8xl">
-              LOREM IPSUM
+            <span className="font-display text-white text-6xl md:text-7xl xl:text-8xl shadow-md">
+              BECAUSE DINING 
               <br />
-              DOLOR SIT AMET
+              IS AN EXPERIENCE
             </span>
           </div>
           <div
-            className={`max-w-md lg:max-w-sm xl:max-w-md transition-all duration-1000 ${isLoaded ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"}`}
-            style={{ transitionDelay: "1000ms" }}
-          >
-            <div className="mb-4 text-white font-medium font-inter text-sm md:text-base ">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua.
+              className={`max-w-md lg:max-w-sm xl:max-w-md transition-all duration-1000 ${
+                isLoaded ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
+              }`}
+              style={{ transitionDelay: "1000ms" }}
+            >
+              <div className="mb-6 text-white font-medium font-inter text-base md:text-md space-y-2 shadow-md">
+                Flavours rooted in tradition. Plates crafted with care. Every table, an invitation to slow down and savour.
+                <br />
+                <button
+                  onClick={() => scrollToSection("bookings")}
+                  className="
+                    relative cursor-pointer overflow-hidden
+                    border border-white/20
+                    bg-white/10 backdrop-blur-sm
+                    font-medium flex items-center justify-center
+                    w-fit h-12 px-6 text-sm rounded-3xl text-white
+                    transition-colors duration-300 ease-out
+                    before:absolute before:left-0 before:bottom-0
+                    before:h-0 before:w-full
+                    before:bg-white
+                    before:rounded-full
+                    before:transition-all before:duration-500 before:ease-out
+                    hover:before:h-full
+                    hover:text-[#0D2E24]
+                  "
+                >
+                  <span className="relative z-10">Book A Table</span>
+                </button>
+              </div>
             </div>
-          </div>
         </div>
       </div>
     </section>

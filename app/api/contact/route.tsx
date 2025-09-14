@@ -19,7 +19,7 @@ export async function POST(request: Request) {
     // Send email using Resend - use html instead of text for HTML content
     const { data, error } = await resend.emails.send({
       from: "Resto Refine Studios <hello@restorefine.com>",
-      to: "thewqmps@gmail.com",
+      to: "info@yewtreeinn.com",
       subject: `New Contact Form Submission from ${name}`,
       html: `
         <h2>New Contact Form Submission</h2>
