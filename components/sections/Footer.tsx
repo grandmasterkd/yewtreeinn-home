@@ -10,6 +10,15 @@ import { useState } from "react"
 export default function Footer() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isReviewSubmitting, setIsReviewSubmitting] = useState(false)
+
+    const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
+    }
+   
+  }
+
   const [formStatus, setFormStatus] = useState<{
     type: "success" | "error" | null
     message: string
@@ -248,13 +257,13 @@ export default function Footer() {
 
         {/* Bottom Footer */}
         <div className="mt-8 md:mt-0 text-white gap-x-4 flex flex-col md:flex-row justify-between items-center md:items-end">
-          <section id="bookings" className="flex justify-center items-center gap-2 mb-4 md:mb-0">
-            <Button className="text-[#0d2e24] bg-[#E8D3A5] hover:bg-[#134435] px-6 h-12 md:h-14 rounded-full hover-lift text-sm sm:text-base w-full sm:w-auto">
+          <section onClick={() => scrollToSection("bookings")} className="flex justify-center items-center gap-2 mb-4 md:mb-0">
+            <Button className="text-[#0d2e24] bg-[#E8D3A5] hover:bg-[#fffff] px-6 h-12 md:h-14 rounded-full hover-lift text-sm sm:text-base w-full sm:w-auto">
               Book A Table Now
             </Button>
             <Button
               size="icon"
-              className="text-[#0d2e24] text-lg font-medium bg-[#E8D3A5] hover:bg-[#134435] h-12 w-12 md:h-14 md:w-14 flex items-center justify-center rounded-full hover-lift"
+              className="text-[#0d2e24] text-lg font-medium bg-[#E8D3A5] hover:bg-[#fffff] h-12 w-12 md:h-14 md:w-14 flex items-center justify-center rounded-full hover-lift"
             >
               →
             </Button>

@@ -9,7 +9,7 @@ const dishes = [
     name: "CHICKEN NOODLES",
     price: "£8.00",
     description: "Chow mein noodles served smothered with soya sauce and mix shredded vegetables",
-    image: "/menu-dish.jpg",
+    image: "/chicken-noodles-dish.jpg",
     additionalInfo: [
       "Cooking time: ~15 minutes",
       "Allergens: Contains soy, wheat (gluten)",
@@ -22,7 +22,7 @@ const dishes = [
     price: "£32.00",
     description:
       "An assortment of Chicken Tikka, Lamb Seekh Kebab, Chicken Hariyali Tikka, Chicken Malai Tikka, Tandoori King Prawns, Salmon Tikka, Fish Pakora, Chicken Wings and Lamb Chops — all marinated in authentic Indian spices, cooked in a clay oven",
-    image: "/menu-dish.jpg",
+    image: "/yewtreeinn-special-mixed-grill-dish.jpg",
     additionalInfo: [
       "Cooking time: ~25–30 minutes",
       "Allergens: Contains shellfish (prawns), dairy (yogurt marinades), fish",
@@ -35,7 +35,7 @@ const dishes = [
     price: "£11.50",
     description:
       "Tender lamb pieces cooked with ginger and garlic paste and a mix of Indian spices, blended with onion and tomato, finished with fresh coriander garnish",
-    image: "/menu-dish.jpg",
+    image: "/lamb-rogan-dish.jpg",
     additionalInfo: [
       "Cooking time: ~20 minutes",
       "Allergens: Typically dairy-free, nut-free (check cross-contamination)",
@@ -48,7 +48,7 @@ const dishes = [
     price: "£8.50",
     description:
       "A classic Indian side dish featuring potatoes fried in fresh spinach, cooked together with onion, green chilli, tomato, ginger and garlic",
-    image: "/menu-dish.jpg",
+    image: "/aloo-saag-dish.jpg",
     additionalInfo: [
       "Cooking time: ~15–20 minutes",
       "Allergens: Vegan-friendly, gluten-free",
@@ -60,7 +60,7 @@ const dishes = [
     name: "HIMALAYAN GOAT CURRY",
     price: "£13.00",
     description: "Cooked slowly, goat meat is tender and juicy with a delicious flavour that is most similar to lamb",
-    image: "/menu-dish.jpg",
+    image: "/himalayan-goat-curry-dish.jpg",
     additionalInfo: [
       "Cooking time: ~35–40 minutes (slow-cooked)",
       "Allergens: Usually dairy-free, nut-free (check preparation)",
@@ -126,7 +126,7 @@ export default function Menu() {
 
   return (
     <main id="menu" className="w-full min-h-screen grid place-items-center bg-white">
-      <section className="container py-8 md:py-16 lg:py-20 px-6 lg:px-8">
+      <section className="container py-8 md:pb-16 lg:pb-20 px-6 lg:px-8">
         {/* Header */}
         <div className={`pb-8 md:pb-12 text-start ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl">

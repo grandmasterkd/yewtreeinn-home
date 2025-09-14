@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 
 export default function Gallery() {
   const [isVisible, setIsVisible] = useState(false)
+  const [currentIndex, setCurrentIndex] = useState(0)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -38,13 +39,30 @@ export default function Gallery() {
       src: "/gallery/michael-lock-uu2f5z9c4N4-unsplash.jpg",
       alt: "Bar area",
     },
+    {
+      src: "/gallery/yewtree-lux-meal.jpg",
+      alt: "Luxury dining experience",
+    },
   ]
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % galleryImages.length)
+    }, 4000)
+
+    return () => clearInterval(interval)
+  }, [galleryImages.length])
+
+  const infiniteImages = [...galleryImages, ...galleryImages, ...galleryImages]
+  const imageWidth = 300 // Fixed width for each image
+  const visibleImages = 4 // Number of images visible at once
+  const translateX = -(currentIndex * imageWidth)
+
   return (
-    <section id="gallery" className="py-8 md:py-16 lg:py-20">
-      <div className="container mx-auto px-6 lg:px-0">
+    <section id="gallery" className="py-8 md:py-16 lg:py-20 bg-white">
+      <div className="container mx-auto px-6 lg:px-8">
         {/* Header */}
-        <div className={`pl-0 md:pl-8 text-left mb-8 md:mb-12 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+        <div className={`text-left mb-8 md:mb-12 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-[#134435] mb-4">
             TAKE A LOOK AROUND
             <br />
@@ -52,19 +70,40 @@ export default function Gallery() {
           </h2>
         </div>
 
-        {/* Gallery Grid */}
-        <div
-          className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-x-4 gap-y-3 ${isVisible ? "animate-fade-in-up animate-delay-200" : "opacity-0"}`}
-        >
-          {galleryImages.map((image, index) => (
-            <div key={index} className={`relative overflow-hidden rounded-2xl hover-lift`}>
-              <img
-                src={image.src || "/placeholder.svg"}
-                alt={image.alt}
-                className="w-full h-[300px] md:h-[400px] lg:h-[550px] object-cover transition-transform duration-500 hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
-            </div>
+        <div className={`overflow-hidden ${isVisible ? "animate-fade-in-up animate-delay-200" : "opacity-0"}`}>
+          <div
+            className="flex transition-transform duration-1000 ease-in-out"
+            style={{
+              transform: `translateX(${translateX}px)`,
+            }}
+          >
+            {infiniteImages.map((image, index) => (
+              <div
+                key={`${index}-${image.src}`}
+                className="relative overflow-hidden rounded-2xl hover-lift flex-shrink-0 mx-2"
+                style={{ width: `${imageWidth}px` }}
+              >
+                <img
+                  src={image.src || "/placeholder.svg"}
+                  alt={image.alt}
+                  className="w-full h-[300px] md:h-[400px] lg:h-[550px] object-cover transition-transform duration-500 hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Carousel indicators */}
+        <div className="flex justify-center mt-8 space-x-2">
+          {galleryImages.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentIndex(index)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                index === currentIndex ? "bg-[#134435] scale-110" : "bg-gray-300 hover:bg-gray-400"
+              }`}
+            />
           ))}
         </div>
       </div>
