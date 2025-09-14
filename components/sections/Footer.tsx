@@ -169,7 +169,7 @@ export default function Footer() {
 
               <div>
                 <h4 className="text-[#e8d3a5] font-semibold text-sm md:text-base">Email</h4>
-                <a href="mailto:info@yewtreeinnrestaurant.com" className="text-white text-sm md:text-base">info@yewtreeinnrestaurant.com</a>
+                <a href="mailto:info@yewtreeinn.com" className="text-white text-sm md:text-base">info@yewtreeinn.com</a>
               </div>
 
               <div>

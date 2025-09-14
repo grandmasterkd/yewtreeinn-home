@@ -115,7 +115,7 @@ export default function Menu() {
   }, [])
 
   const handleViewFullMenu = () => {
-    window.open("/menu.pdf", "_blank")
+    window.open("/yewtreeinn_a3menu_update1_web.pdf", "_blank")
   }
 
   const currentDish = dishes[currentDishIndex]
