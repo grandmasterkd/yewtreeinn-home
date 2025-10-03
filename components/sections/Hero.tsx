@@ -22,7 +22,7 @@ export default function Hero() {
     <section
       className="relative min-h-screen bg-cover bg-center bg-no-repeat mx-auto w-screen"
       style={{
-        backgroundImage: "url('/yewtreeinn-herobg.jpg')",
+        backgroundImage: "url('/yewtreeinn-herobg.webp')",
       }}
     >
       <nav

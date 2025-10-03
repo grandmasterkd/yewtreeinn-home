@@ -58,7 +58,7 @@ export default function About() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-9 gap-3">
             <div className="col-span-1 md:col-span-1 lg:col-span-6">
               <img
-                src="/restaurant_service.jpg"
+                src="/restaurant_service.webp"
                 alt="Restaurant service"
                 className="w-full h-64 md:h-80 lg:h-[90%] object-cover rounded-3xl hover-lift"
               />
@@ -66,7 +66,7 @@ export default function About() {
 
             <div className="col-span-1 md:col-span-1 lg:col-span-3">
               <img
-                src="/family-restaurant.jpg"
+                src="/family-restaurant.webp"
                 alt="Family dining"
                 className="w-full h-64 md:h-80 lg:h-[90%] object-cover rounded-3xl hover-lift"
               />

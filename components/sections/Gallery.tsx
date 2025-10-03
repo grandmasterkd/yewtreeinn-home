@@ -24,23 +24,23 @@ export default function Gallery() {
 
   const galleryImages = [
     {
-      src: "/gallery/muhammad-umair-Vp2SJ9_kwKY-unsplash.jpg",
+      src: "/gallery/muhammad-umair-Vp2SJ9_kwKY-unsplash.webp",
       alt: "Restaurant interior",
     },
     {
-      src: "/gallery/anna-blake-5z8dV82_MyA-unsplash.jpg",
+      src: "/gallery/anna-blake-5z8dV82_MyA-unsplash.webp",
       alt: "Outdoor seating",
     },
     {
-      src: "/gallery/josh-berendes-z35IfrueG9s-unsplash.jpg",
+      src: "/gallery/josh-berendes-z35IfrueG9s-unsplash.webp",
       alt: "Private dining",
     },
     {
-      src: "/gallery/michael-lock-uu2f5z9c4N4-unsplash.jpg",
+      src: "/gallery/michael-lock-uu2f5z9c4N4-unsplash.webp",
       alt: "Bar area",
     },
     {
-      src: "/gallery/yewtree-lux-meal.jpg",
+      src: "/gallery/yewtree-lux-meal.webp",
       alt: "Luxury dining experience",
     },
   ]
