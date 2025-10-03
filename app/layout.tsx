@@ -1,8 +1,8 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter, Bebas_Neue } from "next/font/google"
+import { Inter } from "next/font/google"
+import localFont from "next/font/local"
 import "./globals.css"
-import { Analytics } from '@vercel/analytics/next';
 
 const inter = Inter({
   subsets: ["latin"],
@@ -10,20 +10,17 @@ const inter = Inter({
   display: "swap",
 })
 
-const bebasNeue = Bebas_Neue({
-  weight: "400",
-  subsets: ["latin"],
+const bebasNeue = localFont({
+  src: "./fonts/BebasNeue-Regular.woff2",
   variable: "--font-bebas-neue",
   display: "swap",
+  weight: "400",
 })
 
 export const metadata: Metadata = {
   title: "Yew Tree Inn - Premium Restaurant in Glasgow",
   description:
     "Experience exceptional dining at Yew Tree Inn, Glasgow's premier restaurant offering modern twists on classic dishes in a beautiful setting.",
-  icons: {
-    icon: "/favicon.svg",
-  },
 }
 
 export default function RootLayout({
@@ -33,7 +30,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${bebasNeue.variable}`}>
-      <body className="antialiased">{children}  <Analytics /> </body>
+      <body className="antialiased">{children}</body>
     </html>
   )
 }
