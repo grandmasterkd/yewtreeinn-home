@@ -9,7 +9,7 @@ const dishes = [
     name: "CHICKEN NOODLES",
     price: "£8.00",
     description: "Chow mein noodles served smothered with soya sauce and mix shredded vegetables",
-    image: "/chicken-noodles-dish.jpg",
+    image: "/chicken-noodles-dish.webp",
     additionalInfo: [
       "Cooking time: ~15 minutes",
       "Allergens: Contains soy, wheat (gluten)",
@@ -22,7 +22,7 @@ const dishes = [
     price: "£32.00",
     description:
       "An assortment of Chicken Tikka, Lamb Seekh Kebab, Chicken Hariyali Tikka, Chicken Malai Tikka, Tandoori King Prawns, Salmon Tikka, Fish Pakora, Chicken Wings and Lamb Chops — all marinated in authentic Indian spices, cooked in a clay oven",
-    image: "/yewtreeinn-special-mixed-grill-dish.jpg",
+    image: "/yewtreeinn-special-mixed-grill-dish.webp",
     additionalInfo: [
       "Cooking time: ~25–30 minutes",
       "Allergens: Contains shellfish (prawns), dairy (yogurt marinades), fish",
@@ -35,7 +35,7 @@ const dishes = [
     price: "£11.50",
     description:
       "Tender lamb pieces cooked with ginger and garlic paste and a mix of Indian spices, blended with onion and tomato, finished with fresh coriander garnish",
-    image: "/lamb-rogan-dish.jpg",
+    image: "/lamb-rogan-dish.webp",
     additionalInfo: [
       "Cooking time: ~20 minutes",
       "Allergens: Typically dairy-free, nut-free (check cross-contamination)",
@@ -48,7 +48,7 @@ const dishes = [
     price: "£8.50",
     description:
       "A classic Indian side dish featuring potatoes fried in fresh spinach, cooked together with onion, green chilli, tomato, ginger and garlic",
-    image: "/aloo-saag-dish.jpg",
+    image: "/aloo-saag-dish.webp",
     additionalInfo: [
       "Cooking time: ~15–20 minutes",
       "Allergens: Vegan-friendly, gluten-free",
@@ -60,7 +60,7 @@ const dishes = [
     name: "HIMALAYAN GOAT CURRY",
     price: "£13.00",
     description: "Cooked slowly, goat meat is tender and juicy with a delicious flavour that is most similar to lamb",
-    image: "/himalayan-goat-curry-dish.jpg",
+    image: "/himalayan-goat-curry-dish.webp",
     additionalInfo: [
       "Cooking time: ~35–40 minutes (slow-cooked)",
       "Allergens: Usually dairy-free, nut-free (check preparation)",

@@ -161,21 +161,21 @@ export default function Bookings() {
               <div className="flex -space-x-5">
                 <div className="w-12 h-12 rounded-full bg-gray-300 border-2 border-white">
                   <img
-                    src="/booking-headshot-3.jpg"
+                    src="/booking-headshot-3.webp"
                     alt="Booking Headshot"
                     className="w-full h-full rounded-full object-cover"
                   />
                 </div>
                 <div className="w-12 h-12 rounded-full bg-gray-400 border-2 border-white">
                   <img
-                    src="/booking-headshot-2.jpg"
+                    src="/booking-headshot-2.webp"
                     alt="Booking Headshot"
                     className="w-full h-full rounded-full object-cover"
                   />
                 </div>
                 <div className="w-12 h-12 rounded-full bg-gray-500 border-2 border-white">
                   <img
-                    src="/booking-headshot-1.jpg"
+                    src="/booking-headshot-1.webp"
                     alt="Booking Headshot"
                     className="w-full h-full rounded-full object-cover"
                   />
